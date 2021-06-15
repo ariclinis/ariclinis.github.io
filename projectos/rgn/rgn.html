@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<HTML>
+
+<!--
+Rede Geodésica Nacional
+
+0123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789
+-->
+
+
+<HEAD>	
+<TITLE>3º projeto prático (Javascript)</TITLE>
+<META charset="utf-8" name="viewport" content="width=device-width, initial-scale=1.0">	
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+   integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+   crossorigin=""/>
+
+   <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+   integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+   crossorigin=""></script>
+   <link rel="stylesheet" href="https://leaflet.github.io/Leaflet.markercluster/dist/MarkerCluster.css" />
+   <link rel="stylesheet" href="https://leaflet.github.io/Leaflet.markercluster/dist/MarkerCluster.Default.css" />
+   <script src="https://leaflet.github.io/Leaflet.markercluster/dist/leaflet.markercluster-src.js"></script>
+   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+   <script src="https://unpkg.com/ionicons@5.5.1/dist/ionicons.js"></script>
+
+<SCRIPT TYPE="text/javascript" SRC="rgn.js"></SCRIPT>
+<STYLE>
+html, body { font-size:12px; height: 100%;  width: 100%; padding: 0; margin: 0;}
+input { padding: 0; margin: 0;}
+</STYLE>
+</HEAD>
+
+
+
+
+
+
+
+<BODY ONLOAD="onLoad()">
+
+<DIV STYLE="position: fixed; top: 0px; left: 0px; height: 100%; width: 200px;">
+<H2>Rede Geodésica Nacional</H2>
+
+<hr><b>Autores:</b> <br />
+&nbsp;&nbsp;&nbsp;&nbsp;   <b>54699</b> Ariclene Chimbili <br />
+&nbsp;&nbsp;&nbsp;&nbsp;   <b>55796s</b> Goncalo Malheiro <br />
+
+<hr>
+<b>Controlo:</b>
+<br />&nbsp;&nbsp;&nbsp;&nbsp;
+	<img src="./resources/order1.png" alt="order1" />
+	<input type="checkbox" id="order1" checked onchange="checkboxUpdate1()"/>
+	<img src="resources/order2.png" alt="order2" />	
+	<input type="checkbox" id="order2" checked onchange="checkboxUpdate2()"/>
+	<img src="resources/order3.png" alt="order3" />	
+	<input type="checkbox" id="order3" checked onchange="checkboxUpdate3()"/>
+	<img src="resources/order4.png" alt="order4" />	
+	<input type="checkbox" id="order4" checked onchange="checkboxUpdate4()"/>
+<br />&nbsp;&nbsp;&nbsp;&nbsp;
+
+<br />
+
+<hr><b>Estatísticas:</b>
+<br />&nbsp;&nbsp;<span class="">VGs visíveis:</span> <SPAN id='visible_caches'>0</SPAN>
+<br />&nbsp;&nbsp;<span class="link-danger">VGs Ordem 1:</span> <SPAN id='vgs1'>0</SPAN>
+<br />&nbsp;&nbsp;<span class="link-success">VGs Ordem 2:</span> <SPAN id='vgs2'>0</SPAN>
+<br />&nbsp;&nbsp;<span class="link-primary">VGs Ordem 3:</span> <SPAN id='vgs3'>0</SPAN>
+<br />&nbsp;&nbsp;<span class="link-secondary">VGs Ordem 4:</span> <SPAN id='vgs4'>0</SPAN>
+<br />&nbsp;&nbsp;VG mais elevado: <SPAN id='vg_mais_elevado'></SPAN>
+<br />&nbsp;&nbsp;VG menos elevado: <SPAN id='vg_menos_elevado'></SPAN>
+<br />
+
+<hr><b>Funcionalidades:</b>
+<div style="margin-left: 5px;">
+	<br />
+
+	<input type="button" id="validar_vgs" class="btn btn-info" value="Validade VGs" onclick="validarVGs()" />
+	<br />
+	<br />
+	<input type="button" id="altitudes_vgs" class="btn btn-info" value="Altitudes VGs" onclick="putCicleVGs()" />
+	<br />
+	<br />
+	<input type="button" id="claster" class="btn btn-info" value="Ativar Clustering" onclick="clasterVGs()" />
+	<hr>
+	<figure>
+		<blockquote class="blockquote">
+		  <p class="link-danger"><b>Pequeno Alerta</b></p>
+		</blockquote>
+		<figcaption class="blockquote-footer ">
+			Implementamos todas as funcões excepto a que remove os circulos dos VGS quando clicamos 
+			no mapa, por isso tem que atualizar a pagina sempre que realizar uma operacão.
+			<br />
+			Já agora, os trabalhos foram divertidos :)
+		</figcaption>
+	  </figure>
+	<p>
+	</p>
+</div>
+
+</DIV>
+
+
+
+
+
+<div id="mapid" style="position: fixed; top: 0px; left: 200px; width: 100%; height: 100%;" onclick="removeCirculos()"></div>
+</BODY>
+
+</HTML>
+
